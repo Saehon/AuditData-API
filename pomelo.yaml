@@ -1,0 +1,44 @@
+schema_version: "1.0"
+name: AuditData-API
+version: "0.1.0"
+type: connector
+domain: audit-data
+subdomains:
+  - general-ledger
+  - trial-balance
+  - accounts-receivable
+  - accounts-payable
+  - inventory
+repository: Saehon/AuditData-API
+capabilities:
+  - standardized-audit-data-transfer
+  - ERP-data-ingestion
+  - semantic-audit-data-interface
+inputs:
+  - ERP
+  - accounting-system
+outputs:
+  - normalized-audit-data
+  - ledger-records
+  - trial-balance
+  - subledger-records
+governance:
+  risk_level: medium
+  human_review: required-for-production
+  evidence_required: true
+  production_gate:
+    - schema-validation
+    - connector-tests
+    - data-quality-check
+    - security-review
+    - human-approval
+evaluation:
+  benchmark: Connector-Eval
+  checks:
+    - schema-conformance
+    - completeness
+    - reconciliation
+    - provenance
+license:
+  - MIT
+status: registered
